@@ -7,10 +7,10 @@ class TimescaledbToolkit < Formula
 
   depends_on "rust" => :build
   depends_on "rustfmt" => :build
-  depends_on "postgresql@15"
+  depends_on "postgresql@16"
 
   def postgresql
-    Formula["postgresql@15"]
+    Formula["postgresql@16"]
   end
 
   resource "cargo-pgrx" do
