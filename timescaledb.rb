@@ -10,12 +10,12 @@ class Timescaledb < Formula
 
   depends_on "cmake" => :build
   depends_on "openssl" => :build
-  depends_on "postgresql@15" => :build
+  depends_on "postgresql@16" => :build
   depends_on "xz" => :build
   depends_on "timescale/tap/timescaledb-tools" => :recommended
 
   def postgresql
-    Formula["postgresql@15"]
+    Formula["postgresql@16"]
   end
 
   def install
@@ -31,7 +31,7 @@ class Timescaledb < Formula
     `chmod +x timescaledb_move.sh`
     `echo "#!/bin/bash" >> timescaledb_move.sh`
     `echo "echo 'Moving files into place...'" >> timescaledb_move.sh`
-    `echo "/usr/bin/install -c -m 755 \\\$(find #{lib} -name timescaledb*.so) #{libdir.strip}/" >> timescaledb_move.sh`
+    `echo "/usr/bin/install -c -m 755 \\\$(find #{lib} -name timescaledb*.dylib) #{libdir.strip}/" >> timescaledb_move.sh`
     `echo "/usr/bin/install -c -m 644 #{share}/timescaledb/* #{sharedir.strip}/extension/" >> timescaledb_move.sh`
     `echo "echo 'Success.'" >> timescaledb_move.sh`
     bin.install "timescaledb_move.sh"
